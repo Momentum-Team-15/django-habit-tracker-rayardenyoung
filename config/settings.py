@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import environ
 import os
+import environ
+import django
+django.setup()
 
 env = environ.Env(
     # set casting, default value
@@ -29,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-
+ 
 SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
