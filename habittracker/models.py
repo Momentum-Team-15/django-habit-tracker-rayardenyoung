@@ -6,22 +6,21 @@ from django.contrib.auth.models import AbstractUser
 
 class Habit(models.Model):
     name = models.CharField(max_length=50)
-    created_date = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_date = models.DateTimeField(auto_now_add=True)  
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 class Record(models.Model):
-    name = models.CharField(max_length=100)
+    pass
 
-class Test(models.Model)
+class Test(models.Model):
     name = models.CharField(max_length=50)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 class User(AbstractUser):
     pass
