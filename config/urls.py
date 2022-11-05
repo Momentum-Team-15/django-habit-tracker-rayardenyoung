@@ -23,4 +23,6 @@ urlpatterns = [
     path('', views.index, name="home",),
     path('accounts/login/', views.login, name="login"),
     path('accounts/logout/', views.logout, name="logout"),
+    path('habit/new', views.create_habit, name="create_habit"),
+    # path('album/<int:pk>/edit/', views.edit_album, name='edit_album'),
 ]
