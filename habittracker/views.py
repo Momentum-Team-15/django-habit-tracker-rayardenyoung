@@ -8,8 +8,8 @@ from .models import Habit
 def index(request):
     return render(request, 'habittracker/index.html')
 
-# def login(request):
-#     return render(request, 'accounts/login/')
+def login(request):
+    return render(request, 'accounts/login/')
 
 
 def logout(request):

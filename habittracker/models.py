@@ -19,7 +19,8 @@ class Habit(models.Model):
 
 class DailyRecord(models.Model):
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name="records")
-    date = models.DateField(auto_now_add=True)
+    created_date = models.DateField(auto_now_add=True)
+    completed_date = models.DateField(blank=True, null=True)
     amount = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
