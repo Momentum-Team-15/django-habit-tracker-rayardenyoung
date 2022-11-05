@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from habittracker import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('', views.index, name="home",),
-    path('accounts/login/', views.login, name="login"),
     path('accounts/logout/', views.logout, name="logout"),
+    path('accounts/login/', views.login, name="login"),
     path('habit/new', views.create_habit, name="create_habit"),
     # path('album/<int:pk>/edit/', views.edit_album, name='edit_album'),
 ]

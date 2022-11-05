@@ -9,12 +9,11 @@ from habittracker.forms import HabitForm
 def index(request):
     return render(request, 'habittracker/index.html')
 
-def login(request):
-    return render(request, 'accounts/login/')
-
-
 def logout(request):
     return render(request, 'accounts/logout/')
+
+def login(request):
+    return render(request, 'accounts/login/')
 
 def create_habit(request):
     if request.method == 'POST':
