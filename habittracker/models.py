@@ -13,8 +13,8 @@ class Habit(models.Model):
     description = models.TextField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="habits", null=True, blank=True)
 
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return f"{self.name} {self.metric} {self.unit_of_measure}"
 
 
 class DailyRecord(models.Model):
