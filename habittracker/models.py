@@ -25,3 +25,4 @@ class DailyRecord(models.Model):
 
     def __str__(self):
         return f"Record for {self.habit.name}"
+
