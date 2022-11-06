@@ -1,12 +1,23 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
 
 
-homepage!
+<p>homepage!</p>
+<div>
+    {% for habit in habits %}
+    <p><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.action }} {{ habit.target}} {{ habit.unit_of_measure }}</a></p>
+        
+    {% endfor %}
+
+</div>
+
+
 
 <a href="{% url 'create_habit' %}">Add a habit</a>
+
+
 
 
 

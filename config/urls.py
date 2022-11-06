@@ -24,6 +24,9 @@ urlpatterns = [
     path('', views.index, name="home",),
     path('accounts/logout/', views.logout, name="logout"),
     path('accounts/login/', views.login, name="login"),
+    path('habit/<int:pk>/', views.habit_detail, name="habit_detail"),
     path('habit/new', views.create_habit, name="create_habit"),
+    path('habit/delete/<int:pk>', views.delete_habit, name='delete_habit'),
     # path('album/<int:pk>/edit/', views.edit_album, name='edit_album'),
+    
 ]

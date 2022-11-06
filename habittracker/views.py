@@ -1,19 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Habit
+from .models import Habit, DailyRecord
 from habittracker.forms import HabitForm
 
 # Create your views here.
 
 @login_required
 def index(request):
-    return render(request, 'habittracker/index.html')
+    habits = Habit.objects.all()
+    return render(request, 'habittracker/index.html', {'habits': habits})
 
 def logout(request):
     return render(request, 'accounts/logout/')
 
 def login(request):
     return render(request, 'accounts/login/')
+
+def habit_detail(request, pk):
+    habit = Habit.objects.get(pk=pk)
+    return render(request, 'habittracker/habit_detail.html', {'habit': habit})
 
 def create_habit(request):
     if request.method == 'POST':
@@ -30,3 +35,10 @@ def create_habit(request):
         form = HabitForm()
         #^^^if user is visiting a page with GET request, not submitting the form yet, render a blank
     return render(request, 'habittracker/create_habit.html', {'form': form})
+
+def delete_habit(request, pk):
+    post = get_object_or_404(Habit, pk=pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect('home')
+    return render(request, 'habittracker/delete_habit.html')
