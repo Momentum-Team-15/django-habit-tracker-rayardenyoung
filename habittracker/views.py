@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Habit, DailyRecord
-from habittracker.forms import HabitForm
+from habittracker.forms import HabitForm, DailyRecordForm
 
 # Create your views here.
 
@@ -42,3 +42,19 @@ def delete_habit(request, pk):
         post.delete()
         return redirect('home')
     return render(request, 'habittracker/delete_habit.html')
+
+def create_dailyrecord(request):
+    if request.method == 'POST':
+        #if user is submitting the form
+        form = DailyRecordForm(request.POST, request.FILES)
+        #form is the filled out ("bound") form with user data
+        if form.is_valid():
+            #django checks if form is valid (filled out with no missing or mistyped data)
+            dailyrecord = form.save()
+            #because it's a ModelForm, saving it will create an instance of Habit in the database
+            #only need commit=False if you are going to add additional data not on the form (like request.user)
+            return redirect("home")
+    else: 
+        form = DailyRecordForm()
+        #^^^if user is visiting a page with GET request, not submitting the form yet, render a blank
+    return render(request, 'habittracker/create_dailyrecord.html', {'form': form})
