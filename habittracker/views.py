@@ -36,6 +36,18 @@ def create_habit(request):
         #^^^if user is visiting a page with GET request, not submitting the form yet, render a blank
     return render(request, 'habittracker/create_habit.html', {'form': form})
 
+def edit_habit(request, pk):
+    post = get_object_or_404(Habit, pk=pk)
+    if request.method == "POST":
+        form = HabitForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('habit_detail', pk=post.pk)
+    else:
+        form = HabitForm(instance=post)
+    return render(request, 'habittracker/edit_habit.html', {'form': form})
+
 def delete_habit(request, pk):
     post = get_object_or_404(Habit, pk=pk)
     if request.method == "POST":
@@ -58,3 +70,19 @@ def create_dailyrecord(request):
         form = DailyRecordForm()
         #^^^if user is visiting a page with GET request, not submitting the form yet, render a blank
     return render(request, 'habittracker/create_dailyrecord.html', {'form': form})
+
+def edit_dailyrecord(request, pk):
+    post = get_object_or_404(DailyRecord, pk=pk)
+    if request.method == "POST":
+        form = DailyRecordForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('habit_detail', pk=post.pk)
+    else:
+        form = DailyRecordForm(instance=post)
+    return render(request, 'habittracker/edit_dailyrecord.html', {'form': form})
+
+# def dailyrecord_detail(request, pk):
+#     dailyrecord = DailyRecord.objects.get(pk=pk)
+#     return render(request, 'habittracker/dailyrecord_detail.html', {'dailyrecord': dailyrecord})

@@ -9,7 +9,9 @@
         <li>{{ record.completed_date }} : {{ record.amount }}</li>
     {% endfor %}
 
-    <p><a href="{% url 'create_dailyrecord' %}">Add a daily record</a></p
+    <p><a href="{% url 'create_dailyrecord' %}">Add a daily record</a></p>
+
+    <p><a href="{% url 'edit_habit' pk=habit.pk %}">EDIT HABIT</a></p>
 
     <p><a href="{% url 'delete_habit' pk=habit.pk %}">DELETE HABIT</a></p> 
 {% endblock %}
