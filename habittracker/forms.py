@@ -5,4 +5,4 @@ class HabitForm(forms.ModelForm):
 
     class Meta:
         model = Habit
-        fields = ['action', 'target', 'unit_of_measure', 'user']
+        fields = ['name', 'target', 'unit_of_measure', 'user']

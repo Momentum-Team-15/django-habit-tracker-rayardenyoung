@@ -7,7 +7,7 @@
 <p>homepage!</p>
 <div>
     {% for habit in habits %}
-    <p><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.action }} {{ habit.target}} {{ habit.unit_of_measure }}</a></p>
+    <p><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.name }} {{ habit.target}} {{ habit.unit_of_measure }}</a></p>
         
     {% endfor %}
 

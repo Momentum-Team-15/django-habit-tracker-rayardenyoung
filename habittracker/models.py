@@ -7,14 +7,14 @@ class User(AbstractUser):
     pass
 
 class Habit(models.Model):
-    action = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     target = models.PositiveIntegerField(null=True, blank=True)
     unit_of_measure = models.CharField(max_length=255, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="habits", null=True, blank=True)
     created_date = models.DateField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.action} {self.target} {self.unit_of_measure}"
+        return f"{self.name} {self.target} {self.unit_of_measure}"
 
 
 class DailyRecord(models.Model):

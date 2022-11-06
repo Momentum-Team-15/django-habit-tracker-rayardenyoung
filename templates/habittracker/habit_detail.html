@@ -2,7 +2,14 @@
 
 {% block content %}
 
-{{ habit.action }} {{ habit.target}} {{ habit.unit_of_measure }}
+<p>{{ habit.name }} {{ habit.target}} {{ habit.unit_of_measure }}</p>
+
+<p>Daily Records:</p>
+    {% for record in habit.records.all %}
+        <li>{{ record.completed_date }} : {{ record.amount }}</li>
+    {% endfor %}
 
 
+
+    <a href="{% url 'delete_habit' pk=habit.pk %}">DELETE HABIT</a>
 {% endblock %}
