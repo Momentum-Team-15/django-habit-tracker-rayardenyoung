@@ -25,9 +25,6 @@ urlpatterns = [
     path('accounts/logout/', views.logout, name="logout"),
     path('accounts/login/', views.login, name="login"),
     path('habit/<int:pk>/', views.habit_detail, name="habit_detail"),
-    #detailpage
-    path('dailyrecord/<int:pk>/', views.dailyrecord_detail, name="dailyrecord_detail"),
-    #working above
     path('habit/new', views.create_habit, name="create_habit"),
     path('habit/<int:habitpk>/edit/', views.edit_habit, name='edit_habit'),
     path('habit/delete/<int:habitpk>', views.delete_habit, name='delete_habit'),

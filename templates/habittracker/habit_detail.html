@@ -5,9 +5,20 @@
 <p>{{ habit.name }} {{ habit.target}} {{ habit.unit_of_measure }}</p>
 
 <p>Daily Records:</p>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Amount</th>
+    </tr>
     {% for record in habit.records.all %}
-        <li><a href="{% url 'dailyrecord_detail' pk=habit.pk %}">{{ record.completed_date }}</a> : {{ record.amount }} {{ habit.unit_of_measure}} </li>
+        
+        <tr>
+            <td>{{ record.completed_date }}</td> <td>{{ record.amount }} {{ habit.unit_of_measure}}</td>
+        </tr>
+        
     {% endfor %}
+
+</table>
 
     <p><a href="{% url 'create_dailyrecord' %}">Add a daily record</a></p>
 

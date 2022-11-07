@@ -20,10 +20,6 @@ def habit_detail(request, pk):
     habit = Habit.objects.get(pk=pk)
     return render(request, 'habittracker/habit_detail.html', {'habit': habit})
 
-def dailyrecord_detail(request, pk):
-    dailyrecord = DailyRecord.objects.get(pk=pk)
-    return render(request, 'habittracker/dailyrecord_detail.html', {'dailyrecord': dailyrecord})
-
 def create_habit(request):
     if request.method == 'POST':
         #if user is submitting the form
