@@ -6,12 +6,12 @@
 
 <p>Daily Records:</p>
     {% for record in habit.records.all %}
-        <li>{{ record.completed_date }} : {{ record.amount }}</li>
+        <li><a href="{% url 'dailyrecord_detail' pk=habit.pk %}">{{ record.completed_date }}</a> : {{ record.amount }} {{ habit.unit_of_measure}} </li>
     {% endfor %}
 
     <p><a href="{% url 'create_dailyrecord' %}">Add a daily record</a></p>
 
-    <p><a href="{% url 'edit_habit' pk=habit.pk %}">EDIT HABIT</a></p>
+    <p><a href="{% url 'edit_habit' habitpk=habit.pk %}">EDIT HABIT</a></p>
 
-    <p><a href="{% url 'delete_habit' pk=habit.pk %}">DELETE HABIT</a></p> 
+    <p><a href="{% url 'delete_habit' habitpk=habit.pk %}">DELETE HABIT</a></p> 
 {% endblock %}
