@@ -12,3 +12,10 @@ class DailyRecordForm(forms.ModelForm):
     class Meta:
         model = DailyRecord
         fields = ['habit', 'amount', 'completed_date']
+
+
+class EditDailyRecordForm(forms.ModelForm):
+
+    class Meta:
+        model = DailyRecord
+        fields = ('amount', 'completed_date')

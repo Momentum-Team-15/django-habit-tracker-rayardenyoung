@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Habit, DailyRecord
-from habittracker.forms import HabitForm, DailyRecordForm
+from habittracker.forms import HabitForm, DailyRecordForm, EditDailyRecordForm
 
 # Create your views here.
 
@@ -43,7 +43,7 @@ def edit_habit(request, habitpk):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('habit_detail', habitpk=habit.pk)
+            return redirect('habit_detail', pk=habit.pk)
     else:
         form = HabitForm(instance=habit)
     return render(request, 'habittracker/edit_habit.html', {'form': form})
@@ -65,14 +65,14 @@ def create_dailyrecord(request):
         form = DailyRecordForm()
     return render(request, 'habittracker/create_dailyrecord.html', {'form': form})
 
-def edit_dailyrecord(request, pk):
-    dailyrecord = get_object_or_404(DailyRecord, pk=pk)
+def edit_dailyrecord(request, dailyrecordpk, habitpk):
+    dailyrecord = DailyRecord.objects.get(pk=habitpk, completed_date=dailyrecordpk)
     if request.method == "POST":
-        form = DailyRecordForm(request.POST, request.FILES, instance=post)
+        form = EditDailyRecordForm(request.POST, request.FILES, instance=dailyrecord)
         if form.is_valid():
-            dailyrecord = form.save(commit=False)
+            dailyrecord = form.save(commit=True)
             dailyrecord.save()
-            return redirect('habit_detail', pk=dailyrecord.pk)
+            return redirect('home')
     else:
-        form = DailyRecordForm(instance=dailyrecord)
+        form = EditDailyRecordForm(instance=dailyrecord)
     return render(request, 'habittracker/edit_dailyrecord.html', {'form': form})
