@@ -14,7 +14,7 @@ class Habit(models.Model):
     created_date = models.DateField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} {self.target} {self.unit_of_measure}"]
+        return f"{self.name} {self.target} {self.unit_of_measure}"
 
 
 class DailyRecord(models.Model):
