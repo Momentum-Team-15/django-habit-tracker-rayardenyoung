@@ -65,8 +65,8 @@ def create_dailyrecord(request):
         form = DailyRecordForm()
     return render(request, 'habittracker/create_dailyrecord.html', {'form': form})
 
-def edit_dailyrecord(request, dailyrecordpk, habitpk):
-    dailyrecord = DailyRecord.objects.get(pk=habitpk, completed_date=dailyrecordpk)
+def edit_dailyrecord(request, habitpk, dailyrecordpk):
+    dailyrecord = DailyRecord.objects.get(pk=habitpk)
     if request.method == "POST":
         form = EditDailyRecordForm(request.POST, request.FILES, instance=dailyrecord)
         if form.is_valid():
