@@ -14,7 +14,7 @@ class Habit(models.Model):
     created_date = models.DateField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} {self.target} {self.unit_of_measure}"
+        return f"{self.name} {self.target} {self.unit_of_measure}"]
 
 
 class DailyRecord(models.Model):
@@ -25,8 +25,8 @@ class DailyRecord(models.Model):
     def __str__(self):
         return f"Record for {self.habit.name}"
 
-    # class Meta:
-    #     constraints = [
-    #         models.UniqueConstraint(fields=['habit', 'user', 'completed_date'], name='unique_daily_record')
-    # ]
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['habit', 'completed_date'], name='unique_daily_record')
+    ]
 
