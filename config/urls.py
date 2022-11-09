@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from habittracker import views
-
+from api import views as api_views
 
 urlpatterns = [
+    path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('', views.index, name="home",),
@@ -31,4 +32,5 @@ urlpatterns = [
     path('dailyrecord/new', views.create_dailyrecord, name="create_dailyrecord"),
     # path('dailyrecord/<int:habitpk>/edit/', views.edit_dailyrecord, name='edit_dailyrecord'),
     # path('dailyrecord/delete/<int:pk>', views.delete_dailyrecord, name='delete_dailyrecord'),
+    path('api/habits/', api_views.HabitListView.as_view(), name="api-habit-list")
 ]

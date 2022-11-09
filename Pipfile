@@ -11,6 +11,7 @@ django-extensions = "*"
 django-environ = "*"
 whitenoise = "*"
 gunicorn = "*"
+djangorestframework = "*"
 
 [dev-packages]
 flake8 = "*"

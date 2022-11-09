@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     'habittracker',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +154,16 @@ if env("RENDER"):
     DJANGO_SUPERUSER_EMAIL=env("DJANGO_SUPERUSER_EMAIL")
 
 LOGIN_REDIRECT_URL='/'
+
+
+#FOR DRF
+#giving me a variable who's value is a dictionary - a place you can put key value pairs
+#drf - if we know who you are/if you are logged in, we can make some determinations about what you're allowed to do:
+#authentication and authorization
+#are you allowed to do a thing? - ex: I need to know who you are if you want to build a habit because it's building a Foreign Key to User
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ]
+}
